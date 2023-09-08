@@ -78,6 +78,4 @@ def main():
     print("Done.")
 
 if __name__ == "__main__":
-    NYT_USERNAME = os.getenv("NYT_USERNAME")
-    NYT_PASSWORD = os.getenv("NYT_PASSWORD")
     main()
