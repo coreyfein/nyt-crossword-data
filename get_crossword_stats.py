@@ -3,14 +3,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.service import Service
-from selenium.common import exceptions
 from datetime import datetime, timedelta
-import json
 import csv
-
-
 import os
-
 from dotenv import load_dotenv
 load_dotenv()
 
