@@ -62,6 +62,54 @@ The CSV will be saved in the same directory as the script.
 
 Selenium can be pretty slow. After logging in, the script usually takes 15 - 45 seconds per puzzle, though this will vary by machine. Keeping Selenium's Chrome window as the active window and not doing anything else while it runs seems to help speed things up. If you've entered a wide date range, make sure your computer won't go to sleep. However, the CSV is updated and saved after each puzzle that's scraped, so if the script does crash, you can rename the CSV for the correct date range and then pick up where it left off when you run it again.
 
+## Airtable Setup
+
+Duplicate .env.example and rename it just .env
+
+In Airtable, create a new base called Crossword Data. Open the base in your browser and take a look at the URL. The string after the first slash (starting with "app") is the base ID. Copy that and paste it in your .env file after AIRTABLE_CROSSWORD_DATA_BASE_ID=
+
+Name your first table "Crossword Times" and take a look at the URL again. The string after the second slash (starting with "tbl") is the table ID. Copy that and paste it in your .env file after AIRTABLE_CROSSWORD_TIMES_TABLE_ID=
+
+Delete any default fields and add the following fields to the Crossword Times table. 
+
+1. "Date" (Date field)
+2. "Day of Week" (Formula field). The formula is:
+    DATETIME_FORMAT({Date}, "dddd")
+3. "Solve Time" (Duration field). Duration format: h:mm:ss
+4. "Solve Time (Minutes)" (Formula field). The formula is:
+    {Solve Time}/60
+5. "Running Average for Day of Week" (Duration field). Duration format: h:mm:ss
+6. "Record for Day of Week as of Date" (Duration field). Duration format: h:mm:ss
+7. "Record for Day of Week as of Date (Minutes)" (Formula field). The formula is:
+    {Record for Day of Week as of Date}/60
+8. "Set Record for Day of Week" (Checkbox field)
+9. "Running Average for Day of Week (Minutes)" (Formula field). THe formula is:
+    {Running Average for Day of Week}/60
+
+Next, in the table:
+
+- Sort by Date 1->9 (and toggle on "Automatically sort records")
+
+- When you're done, it should look like this: https://airtable.com/apptu1Hkm1AyIcVdh/shrxTFmTCtajkXwmt
+
+- Duplicate Grid view and rename it "Monday"
+
+- Add a filter: Where Day of Week is Monday
+
+- Duplicate that view, rename it "Tuesday" and then edit the filter for Tuesday. Repeat for each day of the week.
+
+Now, go to https://airtable.com/create/tokens and create a new token with the following scopes:
+
+- data.records:read
+- data.records:write
+
+Copy the token and paste it in your .env file after AIRTABLE_CROSSWORD_STATS_TOKEN=
+
+You're now all set up. You will be able to paste in solve time data into the "Date" and "Solve Time" fields after running get_crossword_stats.py (see previous sections), and then calculate/store running averages and records by running update_running_averages_and_records.py (see next section).
+
+## Calculating Running Solve Time Averages and Records
+
+
 
 
 
