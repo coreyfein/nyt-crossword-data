@@ -44,23 +44,23 @@ When I ran this on an almost 2 year period, there were roughly 20 days I needed 
 
 Run get_crossword_stats.py
 
-When prompted, enter date range you'd like to get solve time data for.
+When prompted, enter the date range you'd like to get solve time data for.
 
-Chrome will open up to a login page. Select "Continue with Apple." (If you try to login normally, it will detect that a "robot" is trying to login. Google login also does not seem to work, and I didn't try Facebook since Apple works.)
+A new Chrome window will open up to a login page. Let it load fully, then click "Continue with Apple." (If you try to login normally, it will detect that a "robot" is trying to login. Google login also does not seem to work, and I didn't try Facebook since Apple works.)
 
 In the popup window, enter your Apple ID -- it must be the same email address that you use for your NYT Games subscription. If it has not been linked yet, you'll be asked if you want to link it (say yes).
 
-Enter your Apple password, and then the security code (assuming it requires two-factor login for everyone).
+Enter your Apple password, and then the security code (assuming it requires two-factor login).
 
 When asked, select "Trust" to trust the browser and keep you logged in while the script runs.
 
-Select "Continue" to complete the login. The popup window should close, and the main Chrome window should redirect to the puzzle for first date in your date range.
+Select "Continue" to complete the login. The popup window should close, and the main Chrome window should redirect to the puzzle for the first date in your date range.
 
 You can follow progress in Terminal -- a dictionary with all solve times retrieved will print as each day's time is retrieved. 
 
 The CSV will be saved in the same directory as the script. 
 
-Selenium can be pretty slow. After logging in, the script sometimes takes 15 - 45 seconds per puzzle on my computer. Keeping the Selenium window as the active window and not doing anything else while it runs seems to help speed things up. If you're running it for a large time frame, make sure your computer won't go to sleep. The CSV is updated for each puzzle that's scraped, so if the script does crash, you can rename the CSV for the correct date range and then pick up where it left off when you run it again.
+Selenium can be pretty slow. After logging in, the script usually takes 15 - 45 seconds per puzzle, though this will vary by machine. Keeping Selenium's Chrome window as the active window and not doing anything else while it runs seems to help speed things up. If you've entered a wide date range, make sure your computer won't go to sleep. However, the CSV is updated and saved after each puzzle that's scraped, so if the script does crash, you can rename the CSV for the correct date range and then pick up where it left off when you run it again.
 
 
 
