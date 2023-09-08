@@ -14,11 +14,10 @@ def get_start_and_end_dates():
     end_date_str = str(input('Enter date end (yyyy-mm-dd) > '))
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
     end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
-    print(start_date, end_date)
     return start_date, end_date
 
 def open_browser():
-    print("in open_browser()")
+    print("Opening browser")
     options = Options()
     options.add_experimental_option("detach", True)
     options.page_load_strategy = 'none'
@@ -35,11 +34,10 @@ def get_url(date_to_retrieve, start_date):
     else:
         url = f"https://www.nytimes.com/crosswords/game/daily/{year}/{month}/{day}"
 
-    print(url)
     return url
 
 def get_solve_time(driver, url):
-    print(f"getting solve time at url {url}")
+    print(f"Getting solve time at url: {url}")
     driver.get(url)
     WebDriverWait(driver, timeout=1000).until(lambda d: d.find_element(By.CSS_SELECTOR, 'button[aria-label="Play"]'))
     driver.find_element(By.CSS_SELECTOR, 'button[aria-label="Play"]').click()
@@ -70,12 +68,12 @@ def main():
             solve_time = get_solve_time(driver, url)
             date_str = date_to_retrieve.strftime("%Y-%m-%d")
             writer.writerow([date_str, solve_time])
+            f.flush()
             print(f"{date_str}: {solve_time}")
             solve_times_by_date[date_str] = solve_time
             date_to_retrieve += timedelta(days=1)
             print(solve_times_by_date)
     driver.quit()
-    print("quit driver")
     print(solve_times_by_date)
     print("Done.")
 
