@@ -10,8 +10,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def get_start_and_end_dates():
-    start_date_str = str(input('Enter date start (yyyy-mm-dd) > '))
-    end_date_str = str(input('Enter date end (yyyy-mm-dd) > '))
+    start_date_str = str(input('Enter start date (yyyy-mm-dd) > '))
+    end_date_str = str(input('Enter end date (yyyy-mm-dd) > '))
     start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
     end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
     return start_date, end_date
