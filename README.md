@@ -109,7 +109,27 @@ You're now all set up. You will be able to paste in solve time data into the "Da
 
 ## Calculating Running Solve Time Averages and Records
 
+To calculate running solve time averages and records, just run update_running_averages_and_records.py.
 
+(Note: Airtable's free plan only allows 1,000 API calls per month. update_running_averages_and_records.py makes one call per hundred records (days) in your table to retrieve the records, then one call per record (day) to update the data.)
+
+## Visualizing the data
+
+Once you have the data, you can use Airtable or whatever software you prefer to visualize it. Here's how to graph some basic trends in Airtable.
+
+(Note: Airtable's free plan only allows one extension per table. If you don't want to pay for it, you'll need to re-enter parameters every time you want to view a different trend.)
+
+1. Click "Extensions" at the top right of the table
+2. Click "Add an extension"
+3. Choose "Chart"
+4. Select a day of the week from the View dropdown
+5. Select "Line" as your chart type
+6. Select "Date" for your X-axis
+7. Select "Field" for Y-axis, then select the field "Running Average for Day of Week (Minutes)
+
+You should end up with a graph that looks like this: 
+
+![Monday Running Average](graphs/monday_running_average.png)
 
 
 
