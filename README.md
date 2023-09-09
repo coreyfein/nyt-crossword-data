@@ -130,8 +130,7 @@ Once you have the data, you can use Airtable or whatever software you prefer to 
 You should end up with a graph that looks like this: 
 
 ![Monday Running Average](graphs/monday_running_average.png)
-
-
+<h3 align="center">Monday Running Average</h3>
 
 
 
