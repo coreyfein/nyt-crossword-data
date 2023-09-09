@@ -129,8 +129,14 @@ Once you have the data, you can use Airtable or whatever software you prefer to 
 
 You should end up with a graph that looks like this: 
 
-![Monday Running Average](graphs/monday_running_average.png)
-<h3 align="center">Monday Running Average</h3>
+![Monday Solve Time Running Average](graphs/monday_running_average.png)
+<h3 align="center">Monday Solve Time Running Average</h3>
+
+Here's a simple way to visualize how your solve time record improved over time: in the extension, under Field, change the field to "Record for Day of Week as of Date (Minutes)"
+
+![Monday Solve Time Records](graphs/monday_records.png)
+<h3 align="center">Monday Solve Time Records</h3>
+
 
 
 
