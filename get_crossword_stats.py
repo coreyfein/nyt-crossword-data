@@ -5,9 +5,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.service import Service
 from datetime import datetime, timedelta
 import csv
-import os
-from dotenv import load_dotenv
-load_dotenv()
 
 def get_start_and_end_dates():
     start_date_str = str(input('Enter start date (yyyy-mm-dd) > '))
@@ -48,7 +45,6 @@ def get_solve_time(driver, url):
     # No - instead, just look for solve times under a minute in exported data.
     
     return solve_time
-    
 
 def main():
     start_date, end_date = get_start_and_end_dates()
