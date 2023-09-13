@@ -5,13 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.service import Service
 from datetime import datetime, timedelta
 import csv
-
-def get_start_and_end_dates():
-    start_date_str = str(input('Enter start date (yyyy-mm-dd) > '))
-    end_date_str = str(input('Enter end date (yyyy-mm-dd) > '))
-    start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
-    end_date = datetime.strptime(end_date_str, "%Y-%m-%d")
-    return start_date, end_date
+import helpers
 
 def open_browser():
     print("Opening browser")
@@ -47,7 +41,7 @@ def get_solve_time(driver, url):
     return solve_time
 
 def main():
-    start_date, end_date = get_start_and_end_dates()
+    start_date, end_date = helpers.get_start_and_end_dates()
     start_date_str = start_date.strftime("%Y-%m-%d")
     end_date_str = end_date.strftime("%Y-%m-%d")
 
