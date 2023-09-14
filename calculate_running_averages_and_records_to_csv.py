@@ -14,23 +14,6 @@ def strip_leading_zeros_and_colons(time_to_strip):
 
     return time_to_strip[start_char:]
 
-def get_running_average(i, solve_time, running_total_time):
-    day_number = i + 1     
-    running_total_time += solve_time
-    running_average = running_total_time / day_number
-    return running_total_time, running_average
-
-def get_running_best_time(solve_time, running_best_time):
-    if running_best_time == False or running_best_time > solve_time:
-        print("new record today")
-        running_best_time = solve_time
-        set_record_for_day_of_week = True
-    else:
-        set_record_for_day_of_week = False
-    
-    print(f"running_best_time: {running_best_time}")
-    return running_best_time, set_record_for_day_of_week
-
 def build_csv_rows(rows_pre_calculation):
     current_records_and_averages = {
         "Monday": {
