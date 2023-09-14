@@ -3,7 +3,7 @@
 This set of scripts is meant to be run on a local machine in Terminal. Together, you can use them to:
 
 1. Scrape your crossword solve times from New York Times Games and export as a CSV. 
-2. Calculate running averages and solve time records for each day within a given time frame. Running averages and solve time records are calculated/stored for each day of the week separately (e.g. Monday will have its own set of running averages and solve time records). The data will then populate / update in Airtable, so that you can easily see how your running solve time average has changed over time (hopefully trending downwards!) and when new records were set. 
+2. Calculate running averages and solve time records for each day within a given time frame. Running averages and solve time records are calculated/stored for each day of the week separately (e.g. Monday will have its own set of running averages and solve time records). You can choose to calculate and store this data locally (exported as a CSV), or calculate and store in Airtable so that you can easily see how your running solve time average has changed over time (hopefully trending downwards!) and when new records were set. 
 
 ## Setup
 
@@ -13,7 +13,7 @@ You'll need:
 - Python 3.9+ with requirements installed
 - New York Times Games subscription
 - Apple ID with the same email address as your NYT Games subscription (for login purposes only -- you can't login to NYT with username/password directly when running Selenium)
-- Airtable (If you only want to scrape your solve times and export as a CSV, Airtable is options. If you want to calculate/store running averages and records, you'll need it)
+- Airtable (Optional -- if you want to use something else to visualize your data, you don't need Airtable)
 
 ## Requirements
 
@@ -62,6 +62,14 @@ The CSV will be saved in the same directory as the script.
 
 Selenium can be pretty slow. After logging in, the script usually takes 15 - 45 seconds per puzzle, though this will vary by machine. Keeping Selenium's Chrome window as the active window and not doing anything else while it runs seems to help speed things up. If you've entered a wide date range, make sure your computer won't go to sleep. However, the CSV is updated and saved after each puzzle that's scraped, so if the script does crash, you can rename the CSV for the correct date range and then pick up where it left off when you run it again.
 
+## Calculating Running Solve Time Averages and Records
+
+If you want to calculate your running solve time averages and records and store them locally, just run calculate_running_averages_and_records_to_csv.py -- that will export a CSV with all the data.
+
+If you want to store your running solve time averages and records in Airtable, first complete the steps below (in "Airtable Setup"), and then run calculate_running_averages_and_records_airtable.py.
+
+(Note: Airtable's free plan only allows 1,000 API calls per month. calculate_running_averages_and_records_airtable.py makes one call per hundred records (days) in your table to retrieve the records, then one call per record (day) to update the data.)
+
 ## Airtable Setup
 
 Duplicate .env.example and rename it just .env
@@ -72,7 +80,7 @@ Name your first table "Crossword Times" and take a look at the URL again. The st
 
 Delete any default fields and add the following fields to the Crossword Times table. 
 
-1. "Date" (Date field)
+1. "Date" (Date field). Date format should be ISO.
 2. "Day of Week" (Formula field). The formula is:
     DATETIME_FORMAT({Date}, "dddd")
 3. "Solve Time" (Duration field). Duration format: h:mm:ss
@@ -83,7 +91,7 @@ Delete any default fields and add the following fields to the Crossword Times ta
 7. "Record for Day of Week as of Date (Minutes)" (Formula field). The formula is:
     {Record for Day of Week as of Date}/60
 8. "Set Record for Day of Week" (Checkbox field)
-9. "Running Average for Day of Week (Minutes)" (Formula field). THe formula is:
+9. "Running Average for Day of Week (Minutes)" (Formula field). The formula is:
     {Running Average for Day of Week}/60
 
 Next, in the table:
@@ -107,13 +115,7 @@ Copy the token and paste it in your .env file after AIRTABLE_CROSSWORD_STATS_TOK
 
 You're now all set up. You will be able to paste in solve time data into the "Date" and "Solve Time" fields after running get_crossword_stats.py (see previous sections), and then calculate/store running averages and records by running update_running_averages_and_records.py (see next section).
 
-## Calculating Running Solve Time Averages and Records
-
-To calculate running solve time averages and records, just run update_running_averages_and_records.py.
-
-(Note: Airtable's free plan only allows 1,000 API calls per month. update_running_averages_and_records.py makes one call per hundred records (days) in your table to retrieve the records, then one call per record (day) to update the data.)
-
-## Visualizing the data
+## Visualizing the data in Airtable
 
 Once you have the data, you can use Airtable or whatever software you prefer to visualize it. Here's how to graph some basic trends in Airtable.
 
