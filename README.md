@@ -64,6 +64,8 @@ Selenium can be pretty slow. After logging in, the script usually takes 15 - 45 
 
 ## Calculating Running Solve Time Averages and Records
 
+Before calculating your running solve time averages and records, make sure to finalize your solve time data (see [A Note on Scraped Solve Time Data](#a-note-on-scraped-solve-time-data)).
+
 If you want to calculate your running solve time averages and records and store them locally, just run calculate_running_averages_and_records_to_csv.py -- that will export a CSV with all the data.
 
 If you want to store your running solve time averages and records in Airtable, first complete the steps below (in "Airtable Setup"), and then run calculate_running_averages_and_records_airtable.py.
