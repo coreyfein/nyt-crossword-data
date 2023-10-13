@@ -1,6 +1,6 @@
 # What is this?
 
-This set of scripts is meant to be run on a local machine in Terminal. Together, you can use them to:
+This set of scripts is meant to be run on your local machine. Together, you can use them to:
 
 1. Scrape your crossword solve times from New York Times Games and export as a CSV. 
 2. Calculate running averages and solve time records for each day within a given time frame. Running averages and solve time records are calculated/stored for each day of the week separately (e.g. Monday will have its own set of running averages and solve time records). You can choose to calculate and store this data locally (exported as a CSV), or calculate and store in Airtable so that you can easily see how your running solve time average has changed over time (hopefully trending downwards!) and when new records were set. 
@@ -12,7 +12,7 @@ You'll need:
 - Google Chrome
 - Python 3.9+ with requirements installed
 - New York Times Games subscription
-- Apple ID with the same email address as your NYT Games subscription (for login purposes only -- you can't login to NYT with username/password directly when running Selenium)
+- Apple ID or Facebook account with the same email address as your NYT Games subscription (for login purposes only -- you can't login to NYT with username/password directly when running Selenium)
 - Airtable (Optional -- if you want to use something else to visualize your data, you don't need Airtable)
 
 ## Requirements
@@ -46,17 +46,15 @@ Run get_crossword_stats.py
 
 When prompted, enter the date range you'd like to get solve time data for.
 
-A new Chrome window will open up to a login page. Let it load fully, then click "Continue with Apple." (If you try to login normally, it will detect that a "robot" is trying to login. Google login also does not seem to work, and I didn't try Facebook since Apple works.)
+A new Chrome window will open up to a login page. Let it load fully, then click either "Continue with Apple" or "Continue with Facebook." (If you try to login normally, it will detect that a "robot" is trying to login. Google login also does not seem to work.)
 
-In the popup window, enter your Apple ID -- it must be the same email address that you use for your NYT Games subscription. If it has not been linked yet, you'll be asked if you want to link it (say yes).
+In the popup window, follow the prompts to enter your Apple or Facebook login credentials. This may include Two-Factor Authentication.
 
-Enter your Apple password, and then the security code (assuming it requires two-factor login).
+If asked, select "Trust" to trust the browser and keep you logged in while the script runs.
 
-When asked, select "Trust" to trust the browser and keep you logged in while the script runs.
+After you complete the login, close the popup window if it doesn't close automatically. 
 
-Select "Continue" to complete the login. The popup window should close, and the main Chrome window should redirect to the puzzle for the first date in your date range.
-
-You can follow progress in Terminal -- a dictionary with all solve times retrieved will print as each day's time is retrieved. 
+The main Chrome window should redirect to the puzzle for the first date in your date range. You can follow progress in Terminal -- a dictionary with all solve times retrieved will print as each day's time is retrieved. 
 
 The CSV will be saved in the same directory as the script. 
 
